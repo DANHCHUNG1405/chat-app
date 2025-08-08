@@ -1,0 +1,16 @@
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import Profile from "./pages/ProfilePage";
+function App() {
+  return (
+    <div className="bg-[url('./src/assets/bgImage.svg')] bg-contain text-white ">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </div>
+  );
+}
+export default App;
