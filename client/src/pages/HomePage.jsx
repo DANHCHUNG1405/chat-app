@@ -15,14 +15,8 @@ const HomePage = () => {
           : "xl:grid-cols-2 md:grid-cols-2"
       }`}
       >
-        <Sidebar
-          selectedUser={selectedUser}
-          setSelectedUser={setSelectedUser}
-        />
-        <ChatContainer
-          selectedUser={selectedUser}
-          setSelectedUser={setSelectedUser}
-        />
+        <Sidebar />
+        <ChatContainer />
         <RightSidebar selectedUser={selectedUser} />
       </div>
     </div>
