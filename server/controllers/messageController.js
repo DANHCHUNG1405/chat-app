@@ -45,7 +45,7 @@ export const getMessages = async (req, res) => {
       { senderId: selectedUserId, receiverId: myId },
       { seen: true }
     );
-    res.json({ success: true, message: error.message });
+    res.json({ success: true, messages });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
@@ -58,7 +58,7 @@ export const markMessageAsSeen = async (req, res) => {
     const { id } = req.params;
     await Message.findByIdAndUpdate(id, { seen: true });
     res.json({ success: true });
-  } catch {
+  } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
   }
@@ -87,8 +87,8 @@ export const sendMessage = async (req, res) => {
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
     }
-    res.json({ succes: true, newMessage });
-  } catch {
+    res.json({ success: true, newMessage });
+  } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
   }

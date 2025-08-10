@@ -80,36 +80,39 @@ const ChatContainer = () => {
           <div
             key={index}
             className={`flex items-end gap-2 ${
-              msg.senderId === authUser._id ? "justify-end" : "flex-row-reverse"
+              msg.senderId === authUser._id ? "flex-row-reverse" : "flex-row"
             }`}
           >
-            {msg.image ? (
-              <img
-                src={msg.image}
-                className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden mb-8"
-              />
-            ) : (
-              <p
-                className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg mb-8 break-all bg-violet-500/30 text-white ${
-                  msg.senderId === authUser._id
-                    ? "rounded-br-none"
-                    : "rounded-bl-none"
-                }`}
-              >
-                {msg.text}
-              </p>
-            )}
-            <div className="text-center text-xs">
-              <img
-                src={
-                  msg.senderId === authUser._id
-                    ? authUser?.profilePic || assets.avatar_icon
-                    : selectedUser?.profilePic || assets.avatar_icon
-                }
-                alt=""
-                className="w-7 rounded-full"
-              />
-              <p className="text-gray-500">
+            {/* Avatar */}
+            <img
+              src={
+                msg.senderId === authUser._id
+                  ? authUser?.profilePic || assets.avatar_icon
+                  : selectedUser?.profilePic || assets.avatar_icon
+              }
+              alt=""
+              className="w-7 rounded-full self-end"
+            />
+
+            {/* Bubble + time */}
+            <div className="flex flex-col items-start">
+              {msg.image ? (
+                <img
+                  src={msg.image}
+                  className="max-w-[230px] border border-gray-700 rounded-lg overflow-hidden"
+                />
+              ) : (
+                <p
+                  className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg break-all bg-violet-500/30 text-white ${
+                    msg.senderId === authUser._id
+                      ? "rounded-br-none bg-blue-600"
+                      : "rounded-bl-none"
+                  }`}
+                >
+                  {msg.text}
+                </p>
+              )}
+              <p className="text-gray-500 text-xs mt-1">
                 {formatMessageTime(msg.createdAt)}
               </p>
             </div>
